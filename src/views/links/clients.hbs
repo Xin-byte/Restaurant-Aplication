@@ -38,27 +38,6 @@
                         <input type="tel" class="form-control " id="telefono" name="telefonoc" placeholder=""
                             required pattern="[0-9]{9}">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Categoria</label>
-                        <div class="form-group">
-                          <label for=""></label>
-                          <select class="form-control" name="categoriac" id="">
-                            {{#each category}}
-                                <option value="{{idCategoria}}">{{nomcategoria}}</option>
-                            {{/each}}
-                          </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Usuario</label>
-                        <input type="text" class="form-control " id="usuc" name="usuario" placeholder=""
-                            required>
-                    </div>
-                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Contraseña</label>
-                        <input type="password" class="form-control " id="usuc" name="clavec" placeholder=""
-                            required>
-                    </div>
                     <button type="submit" class="btn btn-primary">Registrar</button>
                 </form>
             </div>

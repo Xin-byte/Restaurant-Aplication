@@ -1,0 +1,67 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-5 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    Editar Categoria
+                </div>
+                <div class="card-body">
+                    <form action="/editEmployees" method="POST">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">DNI</label>
+                            <input type="text" class="form-control " id="dni" value="{{edit.dni}}" name="dnic"
+                                placeholder="" required pattern="[0-9]{8}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nombre</label>
+                            <input type="text" class="form-control " value="{{edit.nombre}}" id="nombre" name="nombresc"
+                                placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Apellido</label>
+                            <input type="text" class="form-control " id="apellido" value="{{edit.apellido}}" name="apec"
+                                placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Direccion</label>
+                            <input type="text" class="form-control " id="direccion" value="{{edit.direccion}}"
+                                name="direccionc" placeholder="" required>
+                        </div>
+                        <div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Telefono</label>
+                            <input type="tel" class="form-control " id="telefono" value="{{edit.telefono}}"
+                                name="telefonoc" placeholder="" required pattern="[0-9]{9}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Categoria</label>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <select class="form-control" name="categoriac" id="">
+                                    <option value="{{edit.fk_idCategoria}}">{{edit.nomcategoria}}</option>
+                                    {{#each category}}
+                                    <option value="{{idCategoria}}">{{nomcategoria}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Usuario</label>
+                            <input type="text" class="form-control " id="usuc" value="{{edit.login}}" name="usuario"
+                                placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-info">
+                                Actualizar
+                            </button>
+                            <a href="/employees" class="btn btn-warning text-white">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

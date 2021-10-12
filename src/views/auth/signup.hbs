@@ -1,0 +1,51 @@
+<div class="card o-hidden border-0 shadow-lg my-5 container">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-5">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                    </div>
+                    <form action="/signup" method="post" class="user">
+                        
+                        <div class="form-group">
+                            <input type="text" name="login" class="form-control form-control-user" id="exampleInputEmail"
+                                placeholder="Email Address">
+                        </div>
+                        <div class="form-group row">
+                            
+                            <div class="col-sm-6">
+                                <input type="password" name="clave" class="form-control form-control-user" id="exampleRepeatPassword"
+                                    placeholder="Repeat Password">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="fk_idCategoria" class="form-control form-control-user" id="exampleRepeatPassword"
+                                    placeholder="fk_idCategoria">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="fk_idestados" class="form-control form-control-user" id="exampleRepeatPassword"
+                                    placeholder="fk_idestados">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="fk_dni" class="form-control form-control-user" id="exampleRepeatPassword"
+                                    placeholder="fk_dni">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Register Account
+                        </button>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="/signin">Already have an account? Login!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

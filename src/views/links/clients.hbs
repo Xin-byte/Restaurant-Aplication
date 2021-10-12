@@ -1,0 +1,139 @@
+<!-- Modal Ingresar Empleado -->
+<div class="modal fade" id="registrar" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Registrar Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/clientsRegister" method="POST">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">DNI</label>
+                        <input type="text" class="form-control " id="dni" name="dnic" placeholder=""
+                            required pattern="[0-9]{8}" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nombre</label>
+                        <input type="text" class="form-control " id="nombre" name="nombresc" placeholder=""
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Apellido</label>
+                        <input type="text" class="form-control " id="apellido" name="apec" placeholder=""
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Direccion</label>
+                        <input type="text" class="form-control " id="direccion" name="direccionc" placeholder=""
+                            required>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Telefono</label>
+                        <input type="tel" class="form-control " id="telefono" name="telefonoc" placeholder=""
+                            required pattern="[0-9]{9}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Categoria</label>
+                        <div class="form-group">
+                          <label for=""></label>
+                          <select class="form-control" name="categoriac" id="">
+                            {{#each category}}
+                                <option value="{{idCategoria}}">{{nomcategoria}}</option>
+                            {{/each}}
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Usuario</label>
+                        <input type="text" class="form-control " id="usuc" name="usuario" placeholder=""
+                            required>
+                    </div>
+                     <div class="form-group">
+                        <label for="exampleFormControlInput1">Contraseña</label>
+                        <input type="password" class="form-control " id="usuc" name="clavec" placeholder=""
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Begin Page Content -->
+
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Clientes
+                <span class="float-right">
+                    <button type="button shadow-lg" class="btn btn-success" data-toggle="modal"
+                        data-target="#registrar">
+                        nuevo <i class="fas fa-plus"></i>
+                    </button>
+                </span>
+                <div class="">
+                    <a type="button shadow-lg" class="btn btn-success" href="">
+                        <i class="fas fa-file-excel"></i>
+                    </a>
+                    <a type="button shadow-lg" class="btn btn-danger" href="">
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
+                </div>
+
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="mytable" class="table table-bordered table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Nombres</th>
+                            <th>Telefono</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each clients}}
+                        <tr>
+                            <td> {{dni}} </td>
+                            <td> {{nombre}} {{apellido}} </td>
+                            <td> {{telefono}} </td>
+                            <td> {{direccion}} </td>
+                            <td>
+                                <a href="/links/edit/{{dni}}" class="btn btn-secondary">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <a href="/links/delete/{{dni}}" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Nombres</th>
+                            <th>Telefono</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

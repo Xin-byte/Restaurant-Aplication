@@ -13,7 +13,7 @@ passport.use('local.signin', new LocalStrategy({
     const result = await pool.query('SELECT * FROM empleados WHERE login = ?', [login]);
     
     //console.log(userName);
-    console.log(result);
+    //console.log(result);
     if (result.length > 0) {
         const user = result[0]
         //console.log(user);

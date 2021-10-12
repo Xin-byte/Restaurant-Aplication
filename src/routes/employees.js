@@ -3,6 +3,7 @@ const router = express.Router();
 const pool = require('../database');
 const helepers =  require('../lib/helpers');
 const { isLoggedIn } = require('../lib/auth');
+const { route } = require('./clients');
 
 router.get('/employees', isLoggedIn, async (req, res) => {
 
@@ -28,7 +29,7 @@ router.get('/editEmployees/:id', isLoggedIn, async (req, res) => {
     const { id } = req.params
     const edit = await pool.query('SELECT*FROM v_empleado WHERE dni = ?', [id]);
     const category = await pool.query('SELECT*FROM categorias WHERE nomcategoria != ?',[edit[0].nomcategoria]);
-    console.log(category);
+    //console.log(category);
     res.render('links/editEmployees',{ edit: edit[0] , category,title:'Editar Empleado' });
 });
 

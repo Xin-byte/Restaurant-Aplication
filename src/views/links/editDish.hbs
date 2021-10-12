@@ -1,0 +1,54 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-5 m-auto">
+            <div class="card">
+                <div class="card-header">
+                    Editar Categoria
+                </div>
+                <div class="card-body">
+                    <form action="/editDish" method="POST">
+                        <div class="">
+                          <input type="text" class="form-control" name="id" id="" aria-describedby="emailHelpId" placeholder="" value="{{edit.ID}}" hidden>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nombre</label>
+                            <input type="text" class="form-control " id="dni" value="{{edit.PLATO}}" name="descrip"
+                                placeholder="" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Precio</label>
+                            <input type="number" class="form-control " value="{{edit.PRECIO}}" id="nombre" name="prec"
+                                placeholder="" required min="0" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Especialidad</label>
+                            <select class="form-control" name="espe" id="">
+                                <option value="{{edit.idEspecialidad}}">{{edit.ESPECIALIDAD}}</option>
+                                {{#each specialties}}
+                                    <option value="{{idEspecialidad}}">{{nomespecialidad}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Tipo de Plato</label>
+                            <select class="form-control" name="tipo" id="">
+                                <option value="{{edit.idtipoPlato}}">{{edit.TIPO}}</option>
+                                {{#each typeDish}}
+                                    <option value="{{idtipoPlato}}">{{nom_tipoplato}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-info">
+                                Actualizar
+                            </button>
+                            <a href="/dish" class="btn btn-warning text-white">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

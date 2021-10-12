@@ -52,6 +52,7 @@ app.use(require('./routes'));
 app.use(require('./routes/aunthentication'));
 app.use(require('./routes/employees'));
 app.use(require('./routes/clients'));
+app.use(require('./routes/dish'));
 
 //Publics
 app.use(express.static(path.join(__dirname, 'public')));

@@ -36,4 +36,12 @@ router.post('/editDish', isLoggedIn, async (req, res) => {
     res.redirect('/dish');
 });
 
+router.get('/deleteDish/:id', isLoggedIn, async (req, res) => {
+    const {id } = req.params;
+    const resultDelete = await pool.query('CALL p_eliminar_plato(?)', [id]);
+    const [[{...msg}]] =  resultDelete;
+    req.flash('success', Object.values(msg));
+    res.redirect('/dish');
+});
+
 module.exports =  router;

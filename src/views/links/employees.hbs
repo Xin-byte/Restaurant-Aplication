@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/employeesRegister" method="POST">
+                <form action="/employeesRegister" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">DNI</label>
                         <input type="text" class="form-control " id="dni" name="dnic" placeholder=""
@@ -59,6 +59,18 @@
                         <input type="password" class="form-control " id="usuc" name="clavec" placeholder=""
                             required>
                     </div>
+                    <div class="photo py-4">
+                        <label for="foto">Foto</label>
+                        <div class="prevPhoto">
+                            <span class="delPhoto">X</span>
+                            <label for="foto"></label>
+                            <img id="img" src="">
+                        </div>
+                        <div class="upimg">
+                            <input type="file" name="img" id="foto" accept="image/png, .jpeg, .jpg, image/gif">
+                        </div>
+                        <div id="form_alert"></div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Registrar</button>
                 </form>
             </div>
@@ -75,7 +87,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Clientes
+            <h6 class="m-0 font-weight-bold text-primary">Empleados
                 <span class="float-right">
                     <button type="button shadow-lg" class="btn btn-success" data-toggle="modal"
                         data-target="#registrar">
@@ -98,6 +110,7 @@
                 <table id="mytable" class="table table-bordered table-hover" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Foto</th>
                             <th>DNI</th>
                             <th>Nombres</th>
                             <th>Telefono</th>
@@ -109,32 +122,27 @@
                     <tbody>
                         {{#each employees}}
                         <tr>
+                            <th> 
+                                <img src="/uploads/{{foto}}" class="rounded-circle" alt="..." width="75px" height="75px">
+                            </th>
                             <td> {{dni}} </td>
                             <td> {{nombre}} {{apellido}} </td>
                             <td> {{telefono}} </td>
                             <td> {{direccion}} </td>
                             <td> {{nomcategoria}} </td>
                             <td>
-                                <a href="/editEmployees/{{dni}}" class="btn btn-secondary">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
-                                <a href="/deleteEmployees/{{idEmpleado}}" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <a href="/editEmployees/{{dni}}" class="btn btn-secondary">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a href="/deleteEmployees/{{idEmpleado}}" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         {{/each}}
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>DNI</th>
-                            <th>Nombres</th>
-                            <th>Telefono</th>
-                            <th>Dirección</th>
-                            <th>Categoria</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

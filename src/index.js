@@ -1,3 +1,4 @@
+//modulos               
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -6,6 +7,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
+const multer =  require('multer');
+const upload =  require('./lib/multer');
 
 const { database } = require('./keys');
 //Initialitation
@@ -37,6 +40,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
+/*app.use(multer({
+    dest: path.join(__dirname, 'public/uploads')
+}).single('img'))*/
 
 //Global Variables
 app.use((req, res, next) => {
@@ -53,6 +59,8 @@ app.use(require('./routes/aunthentication'));
 app.use(require('./routes/employees'));
 app.use(require('./routes/clients'));
 app.use(require('./routes/dish'));
+app.use(require('./routes/reservation'));
+app.use(require('./routes/reports'));
 
 //Publics
 app.use(express.static(path.join(__dirname, 'public')));
@@ -63,5 +71,5 @@ app.listen(app.get('port'), () => {
 });
 
 app.get('/*', (req, res) => {
-    res.render('links/404');
+    res.render('links/404', {title: 'Page not Found'});
 });

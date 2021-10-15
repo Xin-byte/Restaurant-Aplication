@@ -28,6 +28,7 @@ router.post('/signin', passport.authenticate('local.signin', {
 router.get('/logout', isLoggedIn,(req, res) => {
     //finalizar session
     req.logOut();
+    //console.log(req.logout());
     res.redirect('/signin');
 });
 

@@ -4,6 +4,8 @@ const router =  express.Router();
 const { isLoggedIn } =  require('../lib/auth')
 //pool querys
 const pool =  require('../database');
+const upload = require('../lib/multer');
+
 
 router.get('/dish', isLoggedIn, async (req, res) => {
     const dish =  await pool.query('SELECT*FROM v_platos');
@@ -12,7 +14,13 @@ router.get('/dish', isLoggedIn, async (req, res) => {
     res.render('links/dish', { dish, typeDish, specialties, title: 'Platos' });
 });
 
-router.post('/dishRegister', isLoggedIn, async (req, res) => {
+router.post('/dishRegister', upload.single('img'), async (req, res) => {
+    if (req.file) {
+        const { originalname } = req.file;
+        req.body.img = originalname;
+    } else {
+        req.body.img = 'default.png'
+    }
     const resultRegister =  await pool.query('CALL p_nuevo_plato(?)',[Object.values(req.body)]);
     const [[{...msg}]] =  resultRegister;
     req.flash('success', Object.values(msg));
@@ -29,7 +37,15 @@ router.get('/editDish/:id', isLoggedIn, async (req, res) => {
     , title: 'Editar Plato' })
 });
 
-router.post('/editDish', isLoggedIn, async (req, res) => {
+router.post('/editDish', upload.single('img'), async (req, res) => {
+    
+    const defaultImg = await pool.query('SELECT * FROM v_platos WHERE ID = ?',[req.body.id]);
+    if (req.file) {
+        const { originalname } = req.file;
+        req.body.img = originalname;
+    } else {
+        req.body.img = defaultImg[0].foto;
+    }
     const resultEdit = await pool.query('CALL p_actualizar_plato(?)',[Object.values(req.body)]);
     const [[{...msg}]] = resultEdit;
     req.flash('success', Object.values(msg));

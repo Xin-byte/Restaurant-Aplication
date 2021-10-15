@@ -1,0 +1,107 @@
+<div  class="container" id="pdfbody">
+    <div id="page_pdf">
+        <a class="btn btn-info" type="button" onclick="javascript:window.print()">
+            <i class="fas fa-print"></i>
+        </a>
+        <a class="btn btn-danger" type="button" href="/reservation">
+            <i class="fas fa-backward"></i>
+        </a>
+        <table id="factura_head">
+            <tr>
+                <td class="logo_factura">
+                    <div>
+                        <img src="/img/reportelogo.png" alt="" srcset="">
+                    </div>
+                </td>
+                <td class="info_empresa">
+                    <div>
+                        <span class="h2">RESTAURANTE Admins SoonMarie</span>
+                        <p>Calle Universitaria Nº229 – Sacayán Independencia 043 Huaraz, Perú</p>
+                        <p>Teléfono: +(51) 983611729</p>
+                        <p>Email: info@lucero.com</p>
+                    </div>
+                </td>
+                <td class="info_factura">
+                    <div class="round">
+                        <span class="Htre">Boleta</span>
+                        <p>No. Boleta: 1</p>
+                        <p>Fecha: {{data.fecha}}</p>
+                        <p>Hora: {{data.hora_inicio}}</p>
+                        <p>Vendedor: {{user.name}}</p>
+                        <p>Condición de Pago: Al contado</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table id="factura_cliente">
+            <tr>
+                <td class="info_cliente">
+                    <div class="round">
+                        <span class="Htre">Cliente</span>
+                        <table class="datos_cliente">
+                            <tr>
+                                <td><label>DNI:</label>
+                                    <p>  </p>
+                                </td>
+                                <td><label>Teléfono:</label>
+                                    <p></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label>Nombre:</label>
+                                    <p>{{data.CLIENTE}}</p>
+                                </td>
+                                <td><label>Dirección:</label>
+                                    <p></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <table id="factura_detalle">
+            <thead>
+                <tr>
+                    <th width="50px">Turno</th>
+                    <th class="textleft">Hora Inicio</th>
+                    <th class="textleft">Hora Fin</th>
+                    <th>Descripción</th>
+                    <th class="textright" width="150px">Monto</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="detalle_productos">
+                
+                <tr>
+                    <td class="textcenter">{{data.nombreturno}}</td>
+                    <td>{{data.hora_inicio}}</td>
+                    <td>{{data.hora_fin}}</td>
+                    <td>
+                        Mesa: {{data.mesa}}
+                        Nº de comensales: {{data.nComensales}}
+                    </td>
+                    <td class="textright">s/. {{data.monto}}</td>    
+                </tr>
+                
+            </tbody>
+            <tfoot id="detalle_totales">
+                <tr>
+                    <td colspan="4" class="textright"><span>SUBTOTAL S/.</span></td>
+                    <td class="textright"><span>{{data.monto}}</span></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="textright"><span>TOTAL S/.</span></td>
+                    <td class="textright"><span>{{data.monto}}</span></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div>
+            <p class="nota">Si usted tiene preguntas sobre esta Boleta, <br>pongase en contacto con nombre, teléfono y
+                Email</p>
+            <h4 class="label_gracias">¡Gracias por su compra!</h4>
+        </div>
+    </div>
+</div>

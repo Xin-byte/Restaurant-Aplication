@@ -10,7 +10,6 @@ const { isLoggedIn } = require('../lib/auth');
 router.get('/', isLoggedIn, async (req, res, next) => {
     const result = await pool.query('SELECT * FROM personas');
     //console.log(result);
-    //console.log(req.headers);
     res.render('index', {title: 'Inicio'});
 });
 

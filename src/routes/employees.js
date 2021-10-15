@@ -4,6 +4,7 @@ const pool = require('../database');
 const helepers =  require('../lib/helpers');
 const { isLoggedIn } = require('../lib/auth');
 const { route } = require('./clients');
+const upload = require('../lib/multer');
 
 router.get('/employees', isLoggedIn, async (req, res) => {
 
@@ -14,14 +15,22 @@ router.get('/employees', isLoggedIn, async (req, res) => {
     res.render('links/employees', {employees, category, title: 'Empleados'});
 })
 
-router.post('/employeesRegister', async (req, res) => {
+router.post('/employeesRegister', upload.single('img'), async (req, res) => {
      
     const { clavec } = req.body;
     req.body.clavec = await helepers.encryptPassword(clavec);
-    const registerEmployees = await pool.query('CALL p_nuevo_empleado (?)',[Object.values(req.body)]);
+    if (condition) {
+        const { originalname } =  req.file
+        req.body.img = originalname;
+    } else {
+        req.body.img = 'defaultp.png'
+    }
+    
+
+    const registerEmployees = await pool.query('CALL p_nuevo_empleadoo(?)',[Object.values(req.body)]);
     const [[{...msg}]] = registerEmployees;
     req.flash('success', Object.values(msg));
-    //console.log(registerEmployees);
+    console.log(req.body);
     res.redirect('/employees');
 });
 
@@ -33,11 +42,20 @@ router.get('/editEmployees/:id', isLoggedIn, async (req, res) => {
     res.render('links/editEmployees',{ edit: edit[0] , category,title:'Editar Empleado' });
 });
 
-router.post('/editEmployees', isLoggedIn, async (req, res) => {
-   const resultEdit = await pool.query('CALL p_actualizar_empleado(?)', [Object.values(req.body)])
-   const [[{...msg}]] =  resultEdit;
-   req.flash('success', Object.values(msg));
-   res.redirect('/employees');
+router.post('/editEmployees', upload.single('img'), async (req, res) => {
+    const defaultImg = await pool.query('SELECT * FROM v_empleado WHERE dni = ?',[req.body.dnic])
+   
+    if (req.file) {
+        const { originalname } =  req.file;
+        req.body.img = originalname;
+    } else {
+        req.body.img = defaultImg[0].foto;
+    }
+    
+    const resultEdit = await pool.query('CALL p_actualizar_empleado(?)', [Object.values(req.body)])
+    const [[{...msg}]] =  resultEdit;
+    req.flash('success', Object.values(msg));
+    res.redirect('/employees');
 });
 
 router.get('/deleteEmployees/:id', isLoggedIn, async (req, res) => {

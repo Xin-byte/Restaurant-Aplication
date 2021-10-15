@@ -1,0 +1,147 @@
+<!-- Modal Ingresar Empleado -->
+<div class="modal fade" id="registrar" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Registrar Reserva</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/newReservation" method="POST">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Empleado</label>
+                        <select class="form-control" aria-label="Default select example" name="emple">
+                            <option value="{{user.idEmpleado}}">{{user.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Cliente</label>
+                        <select class="form-control" aria-label="Default select example" name="clien">
+                            <option selected>Secleccione Cliente</option>
+                            {{#each clients}}
+                            <option value="{{idcliente}}">{{nombre}} {{apellido}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Turno</label>
+                        <select class="form-control" name="turno" id="">
+                            <option selected>Secleccione Turno</option>
+                            {{#each turn}}
+                            <option value="{{idturno}}">{{nombreturno}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Numero De Comensales</label>
+                        <input type="text" class="form-control " id="usuc" name="nocom" placeholder=""
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="start">Selecione Fheca De reserva</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" value=""
+                            min="{{validateDate}}" max="2025-12-31">
+                    </div>
+                    <div class="form-group">
+                        <label for="start">Hora de Incio</label>
+                        <input type="time" class="form-control" id="fechaIn" name="fechaIn" value="{{validateTime}}" min="{{validateTime}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="start">Hora de Fin</label>
+                        <input type="time" class="form-control" id="fechaFin" name="fechaFin" 
+                        value="{{validateTime}}" min="{{validateTime}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Begin Page Content -->
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Reservas
+                <span class="float-right">
+                    <button type="button shadow-lg" class="btn btn-success" data-toggle="modal"
+                        data-target="#registrar">
+                        nuevo <i class="fas fa-plus"></i>
+                    </button>
+                </span>
+                <div class="">
+                    <a type="button shadow-lg" class="btn btn-success" href="">
+                        <i class="fas fa-file-excel"></i>
+                    </a>
+                    <a type="button shadow-lg" class="btn btn-danger" target="_blank" href="report/reporter.php">
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
+                </div>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table  class="table table-striped table-bordered table-condensed" style="width:100%" id="mytable">
+                    <thead>
+                        <tr>
+                            <th>Turno</th>
+                            <th>Cliente</th>
+                            <th>Empleado</th>
+                            <th>Fecha de Inico</th>
+                            <th>Fecha de Fin</th>
+                            <th>Comensales</th>
+                            <th>Mesa</th>
+                            <th>Consumo</th>
+                            <th>Reporte</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each reservation}}
+                        <tr>
+                            <td class="text-center">{{nombreturno}}</td>
+                            <td>{{CLIENTE}}</td>
+                            <td>{{EMPLEADO}}</td>
+                            <td>{{hora_inicio}}</td>
+                            <td>{{hora_fin}}</td>
+                            <td>{{nComensales}}</td>
+                            <td>{{mesa}}</td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <a href="/editDish/{{ID}}" class="btn btn-secondary m-1">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <a class="btn btn-info m-1" type="button" href="/reportReservation/{{idReserva}}">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <a href="/editDish/{{ID}}" class="btn btn-secondary m-1">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a href="/deleteDish/{{ID}}" class="btn btn-danger m-1">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

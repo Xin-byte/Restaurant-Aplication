@@ -6,7 +6,7 @@
                     Registrar Platos
                 </div>
                 <div class="card-body">
-                    <form action="/dishRegister" method="POST">
+                    <form action="/dishRegister" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Nombre</label>
                             <input type="text" class="form-control " id="dni" value="{{edit.dni}}" name="descrip"
@@ -33,6 +33,18 @@
                                 {{/each}}
                             </select>
                         </div>
+                        <div class="photo py-4">
+                            <label for="foto">Foto</label>
+                            <div class="prevPhoto">
+                                <span class="delPhoto">X</span>
+                                <label for="foto"></label>
+                                <img id="img" src="/uploads/default.png">
+                            </div>
+                            <div class="upimg">
+                                <input type="file" name="img" id="foto" accept="image/png, .jpeg, .jpg, image/gif">
+                            </div>
+                            <div id="form_alert"></div>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-info">
                                 Registrar <i class="fas fa-plus"></i>
@@ -46,7 +58,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Clientes
+                    <h6 class="m-0 font-weight-bold text-primary">Platos
                         <div class="">
                             <a type="button shadow-lg" class="btn btn-success" href="">
                                 <i class="fas fa-file-excel"></i>
@@ -62,6 +74,7 @@
                         <table id="mytable" class="table table-bordered table-hover" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>Foto</th>
                                     <th>Plato</th>
                                     <th>Precio</th>
                                     <th>Tipo</th>
@@ -72,16 +85,19 @@
                             <tbody>
                                 {{#each dish}}
                                 <tr>
+                                    <td>
+                                        <img src="/uploads/{{foto}}" class="rounded-circle" alt="..." width="75px" height="75px">
+                                    </td>
                                     <td> {{PLATO}} </td>
                                     <td> {{PRECIO}} {{apellido}} </td>
                                     <td> {{TIPO}} </td>
                                     <td> {{ESPECIALIDAD}} </td>
                                     <td>
-                                        <div class="row m-auto">
-                                            <a href="/editDish/{{ID}}" class="btn btn-secondary">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <a href="/editDish/{{ID}}" class="btn btn-secondary m-1">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="/deleteDish/{{ID}}" class="btn btn-danger">
+                                            <a href="/deleteDish/{{ID}}" class="btn btn-danger m-1">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
                                         </div>
@@ -89,15 +105,6 @@
                                 </tr>
                                 {{/each}}
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Plato</th>
-                                    <th>Precio</th>
-                                    <th>Tipo</th>
-                                    <th>Especialides</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

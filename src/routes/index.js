@@ -8,9 +8,10 @@ const { isLoggedIn } = require('../lib/auth');
 
 //req = request, res = response , next = siguiente
 router.get('/', isLoggedIn, async (req, res, next) => {
-    const result = await pool.query('SELECT * FROM personas');
+    const resultNow = await pool.query('SELECT * FROM v_reservas_hoy');
+    const resultPro = await pool.query('SELECT * FROM v_reservas_ahora');
     //console.log(result);
-    res.render('index', {title: 'Inicio'});
+    res.render('index', {resultNow,resultPro,title: 'Inicio'});
 });
 
 

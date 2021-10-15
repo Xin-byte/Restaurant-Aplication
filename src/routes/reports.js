@@ -19,6 +19,10 @@ router.get('/reportReservation/:id', isLoggedIn, async(req, res) => {
     const { id } =  req.params;
     res.redirect('/reportReservation/'+id);
 });*/
+router.get('/reportClient', async (req, res) => {
+    const clients =  await pool.query('SELECT * FROM v_cliente');
+    res.render('links/reportClient', {clients, title: 'Reporte Cliente'})
+})
 
 
 module.exports = router;

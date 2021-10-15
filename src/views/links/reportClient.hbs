@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/styleD.css">
+<div class="bodyy container">
+  <header class="clearfix headerr">
+    <div id="logo">
+      <img src="/img/logo.png">
+    </div>
+    <h1>Reporte de Clientes</h1>
+    <div id="company" class="clearfix">
+      <div>Soonmarie</div>
+      <div>Direccion<br />direccionnumero</div>
+      <div>+51 925921887</div>
+      <div><a class="aa" href="mailto:company@example.com">SoonMarie@gmail.com</a></div>
+    </div>
+    <div id="project">
+      <div><span>REPORTE</span> Clientes</div>
+      <div><span>EMPLEADO</span>{{user.name}}</div>
+
+      <div><span>EMAIL</span> <a class="aa" href="mailto:john@example.com">empleado@example.com</a></div>
+      <div><span>DIA</span> August 17, 2015</div>
+
+    </div>
+  </header>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th class="service">DNI</th>
+          <th class="desc">NOMBRE</th>
+          <th>ESTADO</th>
+          <!-- <th>QTY</th>
+            <th>TOTAL</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {{#each clients}}
+        <tr>
+          <td class="service">{{dni}}</td>
+          <td> {{nombre}} {{apellido}} </td>
+          <td class="unit">{{nomestado}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </main>
+</div>

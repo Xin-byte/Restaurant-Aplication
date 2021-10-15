@@ -61,7 +61,8 @@ app.use(require('./routes/clients'));
 app.use(require('./routes/dish'));
 app.use(require('./routes/reservation'));
 app.use(require('./routes/reports'));
-app.use('/reservation',require('./routes/addDish'))
+app.use('/reservation',require('./routes/addDish'));
+app.use(require('./routes/payments'));
 
 //Publics
 app.use(express.static(path.join(__dirname, 'public')));

@@ -19,7 +19,7 @@ router.post('/employeesRegister', upload.single('img'), async (req, res) => {
      
     const { clavec } = req.body;
     req.body.clavec = await helepers.encryptPassword(clavec);
-    if (condition) {
+    if (req.file) {
         const { originalname } =  req.file
         req.body.img = originalname;
     } else {

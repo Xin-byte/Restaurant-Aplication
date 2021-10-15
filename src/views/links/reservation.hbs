@@ -94,11 +94,13 @@
                             <th>Turno</th>
                             <th>Cliente</th>
                             <th>Empleado</th>
-                            <th>Fecha de Inico</th>
-                            <th>Fecha de Fin</th>
+                            <th>Fecha</th>
+                            <th>Hora de Inico</th>
+                            <th>Hora de Fin</th>
                             <th>Comensales</th>
                             <th>Mesa</th>
                             <th>Consumo</th>
+                            <th>Estado</th>
                             <th>Reporte</th>
                             <th>Acciones</th>
                         </tr>
@@ -109,17 +111,19 @@
                             <td class="text-center">{{nombreturno}}</td>
                             <td>{{CLIENTE}}</td>
                             <td>{{EMPLEADO}}</td>
+                            <td>{{timeago fecha}}</td>
                             <td>{{hora_inicio}}</td>
                             <td>{{hora_fin}}</td>
                             <td>{{nComensales}}</td>
                             <td>{{mesa}}</td>
                             <td>
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <a href="/editDish/{{ID}}" class="btn btn-secondary m-1">
-                                        <i class="fas fa-pencil-alt"></i>
+                                    <a href="/reservation/addDish/{{idReserva}}" class="btn btn-warning m-1">
+                                        <i class="fas fa-drumstick-bite"></i></i></a>
                                     </a>
                                 </div>
                             </td>
+                            <td>{{nomestado}}</td>
                             <td>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <a class="btn btn-info m-1" type="button" href="/reportReservation/{{idReserva}}">
@@ -129,8 +133,8 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <a href="/editDish/{{ID}}" class="btn btn-secondary m-1">
-                                        <i class="fas fa-pencil-alt"></i>
+                                    <a href="/editDish/{{ID}}" class="btn btn-success m-1">
+                                        <i class="fas fa-money-bill-wave"></i></a>
                                     </a>
                                     <a href="/deleteDish/{{ID}}" class="btn btn-danger m-1">
                                         <i class="fas fa-trash-alt"></i>

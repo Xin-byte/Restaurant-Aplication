@@ -15,14 +15,18 @@ passport.use('local.signin', new LocalStrategy({
     //console.log(userName);
     //console.log(result);
     if (result.length > 0) {
-        const user = result[0]
-        //console.log(user);
-        const validPassword = await helpers.comparePasswords(clave, user.clave);
-        if (validPassword) {
-            const userName = await pool.query('SELECT * FROM personas WHERE dni = ?', [result[0].fk_dni]);
-            done(null, user, req.flash('success',`Bienvenido ${userName[0].nombre} ${userName[0].apellido}`));
+        if (result[0].fk_idestados == '2') {
+            return done(null, false, req.flash('message','El usuario no existe'));
         } else {
-            done(null, false, req.flash('message','Contraseña incorrecta'));
+            const user = result[0]
+            console.log(user);
+            const validPassword = await helpers.comparePasswords(clave, user.clave);
+            if (validPassword) {
+                const userName = await pool.query('SELECT * FROM personas WHERE dni = ?', [result[0].fk_dni]);
+                done(null, user, req.flash('success',`Bienvenido ${userName[0].nombre} ${userName[0].apellido}`));
+            } else {
+                done(null, false, req.flash('message','Contraseña incorrecta'));
+            }
         }
     } else {
         return done(null, false, req.flash('message','El usuario no existe'));

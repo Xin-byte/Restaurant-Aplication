@@ -1,0 +1,144 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    Agregar Platos
+                </div>
+                <div class="card-body">
+                    <table id="mytable" class="table table-bordered table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Plato</th>
+                                <th>Precio</th>
+                                <th>Tipo</th>
+                                <th>Especialides</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each dish}}
+                            <tr>
+                                <td>
+                                    <img src="/uploads/{{foto}}" class="rounded-circle" alt="..." width="50px"
+                                        height="50px">
+                                </td>
+                                <td> {{PLATO}} </td>
+                                <td> {{PRECIO}}</td>
+                                <td> {{TIPO}} </td>
+                                <td> {{ESPECIALIDAD}} </td>
+                                <td>
+                                    <button type="button shadow-lg" class="btn btn-success" data-toggle="modal"
+                                        data-target="#registrar{{ID}}">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                    <!-- Modal Ingresar Empleado -->
+                                    <div class="modal fade" id="registrar{{ID}}" data-backdrop="static"
+                                        data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Plato
+                                                        {{PLATO}}
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/reservation/addeDish" method="POST">
+                                                        <input type="text" value="{{@root.id}}" name="reser" hidden>
+                                                        <input type="text" value="{{ID}}" name="idplato" hidden>
+                                                        <div class="photo py-4">
+                                                            <label for="foto">Foto</label>
+                                                            <div class="prevPhoto">
+                                                                <span class="delPhoto">X</span>
+                                                                <label for="foto"></label>
+                                                                <img id="img" src="/uploads/{{foto}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlInput1">Cantidad</label>
+                                                            <input type="number" class="form-control " id="apellido"
+                                                                name="canti" placeholder="" required>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Registrar</button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Begin Page Content -->
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-6 mb-4">
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <span class="float-right">
+                        <a type="button shadow-lg" class="btn btn-info" href="/reservation">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </a>
+                    </span>
+                    <h6 class="m-0 font-weight-bold text-primary">Cosumo del comensal
+                        <div class="">
+                            <a type="button shadow-lg" class="btn btn-success" href="">
+                                <i class="fas fa-file-excel"></i>
+                            </a>
+                            <a type="button shadow-lg" class="btn btn-danger" href="">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                        </div>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="mytableOne" class="table table-bordered table-hover" style="width:100%">
+
+                            <thead>
+                                <tr>
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each data}}
+                                <tr>
+                                    <td> {{descripcion}} </td>
+                                    <td> {{precio}}</td>
+                                    <td> {{cantidad}} </td>
+                                    <td> {{SUBTOTAL}} </td>
+                                    <td>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <a href="/reservation/removeDish/{{idPlato}}&{{fk_idReserva}}"
+                                                class="btn btn-danger m-1">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
